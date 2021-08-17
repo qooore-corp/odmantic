@@ -118,6 +118,11 @@ in the model body.
 
       Default: `#!python json.dumps`
 
+ `#!python extra: Extra` *(inherited from Pydantic)*
+ :    Whether to ignore, allow, or forbid extra attributes during model initialization
+
+      Default: `#!python Extra.ignore`
+
 For more details and examples about the options inherited from Pydantic, you can have a
 look to [Pydantic: Model
 Config](https://pydantic-docs.helpmanual.io/usage/model_config/){:target=blank_}

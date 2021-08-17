@@ -1,6 +1,7 @@
 import json
 from typing import Any, Callable, Dict, Optional, Type, Union
 
+from pydantic import Extra
 from pydantic.main import BaseConfig, SchemaExtraCallable
 from pydantic.typing import AnyCallable
 
@@ -23,6 +24,7 @@ class BaseODMConfig:
     anystr_strip_whitespace: bool = False
     json_loads: Callable[[str], Any] = json.loads
     json_dumps: Callable[..., str] = json.dumps
+    extra: Extra = Extra.ignore
 
 
 ALLOWED_CONFIG_OPTIONS = {name for name in dir(BaseODMConfig) if not is_dunder(name)}
