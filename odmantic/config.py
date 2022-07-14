@@ -1,12 +1,24 @@
 import json
 from typing import Any, Callable, Dict, Optional, Type, Union
 
+<<<<<<< HEAD
 from pydantic import Extra
 from pydantic.main import BaseConfig, SchemaExtraCallable
+=======
+from pydantic.main import BaseConfig
+>>>>>>> 35f7be95e4edc9d26daf689c2cb77a0dce5c1adb
 from pydantic.typing import AnyCallable
 
 from odmantic.bson import BSON_TYPES_ENCODERS
 from odmantic.utils import is_dunder
+
+try:
+    from pydantic.config import SchemaExtraCallable
+except ModuleNotFoundError:  # pragma: no cover
+    # pydantic<1.9.0
+    # Cannot use type: ignore for all versions
+    # -> https://github.com/python/mypy/issues/8823
+    from pydantic.main import SchemaExtraCallable  # type: ignore
 
 
 class BaseODMConfig:
@@ -24,7 +36,11 @@ class BaseODMConfig:
     anystr_strip_whitespace: bool = False
     json_loads: Callable[[str], Any] = json.loads
     json_dumps: Callable[..., str] = json.dumps
+<<<<<<< HEAD
     extra: Extra = Extra.ignore
+=======
+    arbitrary_types_allowed: bool = False
+>>>>>>> 35f7be95e4edc9d26daf689c2cb77a0dce5c1adb
 
 
 ALLOWED_CONFIG_OPTIONS = {name for name in dir(BaseODMConfig) if not is_dunder(name)}
